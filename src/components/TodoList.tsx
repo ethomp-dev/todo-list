@@ -1,17 +1,18 @@
 import * as React from 'react'
 import * as Icon from '@heroicons/react/outline'
-import type { TodoListT } from '../index'
+import type { TodoListItemT, TodoListT } from '../index'
 import TodoListItem from './TodoListItem'
-import useTodoCollection from '../lib/useTodoCollection'
 
 const TodoList = ({
   list,
   onAddItem,
   onRemoveItem,
+  onUpdateItem,
 }: {
   list: TodoListT
   onAddItem: (summary: string) => void
   onRemoveItem: (id: string) => void
+  onUpdateItem: (item: TodoListItemT) => void
 }) => {
   const [displayAddItem, setDisplayAddItem] = React.useState(false)
 
@@ -36,6 +37,7 @@ const TodoList = ({
               key={item.id}
               item={item}
               onRemoveItem={onRemoveItem}
+              onUpdateItem={onUpdateItem}
             />
           ))
         ) : (

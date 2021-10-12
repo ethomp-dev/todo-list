@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { TodoListItemT } from './index'
 import useTodoCollection from './lib/useTodoCollection'
 import DateHeading from './components/DateHeading'
 import TodoListNav from './components/TodoListNav'
@@ -25,6 +26,17 @@ const App = () => {
       payload: {
         listIndex,
         itemId: id,
+      },
+    })
+  }
+
+  const handleUpdateItem = (item: TodoListItemT) => {
+    console.log(item)
+    dispatchTodoCollection({
+      type: 'UPDATE_TODO_ITEM',
+      payload: {
+        listIndex,
+        item,
       },
     })
   }
@@ -56,6 +68,7 @@ const App = () => {
               list={todoCollection.data[listIndex]}
               onAddItem={handleAddItem}
               onRemoveItem={handleRemoveItem}
+              onUpdateItem={handleUpdateItem}
             />
           ) : null}
         </div>

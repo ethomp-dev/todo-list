@@ -50,6 +50,16 @@ const todoCollectionReducer = (
         data: newData,
       }
 
+    case 'UPDATE_TODO_ITEM':
+      const itemUpdateList = newData[action.payload.listIndex]
+      itemUpdateList.items = itemUpdateList.items.map((item: TodoListItemT) =>
+        item.id === action.payload.item.id ? action.payload.item : item
+      )
+      return {
+        ...state,
+        data: newData,
+      }
+
     default:
       return state
   }
