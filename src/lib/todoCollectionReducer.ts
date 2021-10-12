@@ -34,6 +34,13 @@ const todoCollectionReducer = (
         ],
       }
 
+    case 'REMOVE_TODO_LIST':
+      newData.splice(action.payload.listIndex, 1)
+      return {
+        ...state,
+        data: newData,
+      }
+
     case 'ADD_TODO_ITEM':
       const itemAddList = newData[action.payload.listIndex]
       itemAddList.items.push({

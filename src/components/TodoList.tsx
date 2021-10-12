@@ -5,11 +5,13 @@ import TodoListItem from './TodoListItem'
 
 const TodoList = ({
   list,
+  onRemoveList,
   onAddItem,
   onRemoveItem,
   onUpdateItem,
 }: {
   list: TodoListT
+  onRemoveList: () => void
   onAddItem: (summary: string) => void
   onRemoveItem: (id: string) => void
   onUpdateItem: (item: TodoListItemT) => void
@@ -21,13 +23,16 @@ const TodoList = ({
 
   return (
     <>
-      <h1 className="my-3 text-2xl font-semibold">
+      <h1 className="flex items-center my-3 text-2xl font-semibold">
         <ListIcon
           className="mr-3 inline align-text-bottom"
           color={list.color || 'text-white'}
           height={24}
         />
-        {list.title}
+        <span className="flex-1">{list.title}</span>
+        <button className="text-base" type="button" onClick={onRemoveList}>
+          Remove
+        </button>
       </h1>
 
       <ul className="space-y-6 dark:text-gray-200">
