@@ -10,12 +10,12 @@ const App = () => {
   const [todoCollection, dispatchTodoCollection] = useTodoCollection()
   const [listIndex, setListIndex] = React.useState(0)
 
-  const handleAddList = () => {
+  const handleAddList = (title: string) => {
     dispatchTodoCollection({
       type: 'ADD_TODO_LIST',
       payload: {
         list: {
-          title: 'Test',
+          title,
         },
       },
     })

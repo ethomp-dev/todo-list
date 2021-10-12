@@ -10,7 +10,7 @@ const TodoListNav = ({
 }: {
   collection: TodoCollectionT
   onListChange: (index: number) => void
-  onAddList: () => void
+  onAddList: (title: string) => void
 }) => {
   return (
     <nav className="col-span-full">
@@ -27,7 +27,12 @@ const TodoListNav = ({
         <li className="rounded bg-secondary text-white">
           <button
             className="w-full h-full p-6 text-left font-semibold"
-            onClick={onAddList}
+            onClick={() => {
+              const newTitle = prompt('List Title')
+              if (newTitle) {
+                onAddList(newTitle)
+              }
+            }}
           >
             <PlusIcon className="mb-3" height={24} />
             New List
