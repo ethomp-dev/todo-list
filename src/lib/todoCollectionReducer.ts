@@ -22,10 +22,16 @@ const todoCollectionReducer = (
         isLoading: false,
       }
 
-    // TODO: implement ADD_TODO_LIST action type
     case 'ADD_TODO_LIST':
       return {
         ...state,
+        data: [
+          ...newData,
+          {
+            ...action.payload.list,
+            items: [],
+          },
+        ],
       }
 
     case 'ADD_TODO_ITEM':

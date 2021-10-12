@@ -18,7 +18,7 @@ const TodoListNavItem = ({
   return (
     <li className="rounded bg-gray-50 dark:bg-gray-800">
       <button
-        className="w-full h-full p-6 text-left font-semibold"
+        className="flex flex-col w-full h-full p-6 text-left font-semibold"
         onClick={() => onListChange(index)}
       >
         <ListIcon
@@ -27,7 +27,7 @@ const TodoListNavItem = ({
           height={24}
         />
 
-        <p className="mb-1">{list.title}</p>
+        <p className="flex-1 mb-1">{list.title}</p>
 
         {list.items.length > 0 ? (
           <p className="text-sm text-gray-600 dark:text-gray-400">

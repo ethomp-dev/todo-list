@@ -10,6 +10,17 @@ const App = () => {
   const [todoCollection, dispatchTodoCollection] = useTodoCollection()
   const [listIndex, setListIndex] = React.useState(0)
 
+  const handleAddList = () => {
+    dispatchTodoCollection({
+      type: 'ADD_TODO_LIST',
+      payload: {
+        list: {
+          title: 'Test',
+        },
+      },
+    })
+  }
+
   const handleAddItem = (summary: string) => {
     dispatchTodoCollection({
       type: 'ADD_TODO_ITEM',
@@ -54,6 +65,7 @@ const App = () => {
             <TodoListNav
               collection={todoCollection.data}
               onListChange={setListIndex}
+              onAddList={handleAddList}
             />
           ) : (
             <p>Loading...</p>
