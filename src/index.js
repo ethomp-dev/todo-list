@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App.jsx'
+import App from './App.tsx'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration.ts'
 import reportWebVitals from './reportWebVitals'
 

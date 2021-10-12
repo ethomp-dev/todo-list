@@ -7,9 +7,11 @@ import useTodoCollection from '../lib/useTodoCollection'
 const TodoList = ({
   list,
   onAddItem,
+  onRemoveItem,
 }: {
   list: TodoListT
-  onAddItem: (event: any) => void
+  onAddItem: (summary: string) => void
+  onRemoveItem: (id: string) => void
 }) => {
   const [displayAddItem, setDisplayAddItem] = React.useState(false)
 
@@ -29,7 +31,13 @@ const TodoList = ({
 
       <ul className="space-y-6 dark:text-gray-200">
         {list.items.length > 0 ? (
-          list.items.map((item) => <TodoListItem key={item.id} item={item} />)
+          list.items.map((item) => (
+            <TodoListItem
+              key={item.id}
+              item={item}
+              onRemoveItem={onRemoveItem}
+            />
+          ))
         ) : (
           <p>Empty</p>
         )}

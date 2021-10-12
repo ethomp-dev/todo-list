@@ -9,12 +9,22 @@ const App = () => {
   const [todoCollection, dispatchTodoCollection] = useTodoCollection()
   const [listIndex, setListIndex] = React.useState(0)
 
-  const handleAddItem = (itemSummary) => {
+  const handleAddItem = (summary: string) => {
     dispatchTodoCollection({
       type: 'ADD_TODO_ITEM',
       payload: {
         listIndex,
-        itemSummary,
+        itemSummary: summary,
+      },
+    })
+  }
+
+  const handleRemoveItem = (id: string) => {
+    dispatchTodoCollection({
+      type: 'REMOVE_TODO_ITEM',
+      payload: {
+        listIndex,
+        itemId: id,
       },
     })
   }
@@ -45,6 +55,7 @@ const App = () => {
             <TodoList
               list={todoCollection.data[listIndex]}
               onAddItem={handleAddItem}
+              onRemoveItem={handleRemoveItem}
             />
           ) : null}
         </div>
