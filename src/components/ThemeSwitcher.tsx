@@ -30,7 +30,11 @@ const ThemeSwitcher = () => {
   }, [darkMode])
 
   return (
-    <button type="button" onClick={() => setDarkMode(!darkMode)}>
+    <button
+      type="button"
+      onClick={() => setDarkMode(!darkMode)}
+      title={`${darkMode ? 'light' : 'dark'} mode`}
+    >
       {darkMode ? <SunIcon height={28} /> : <MoonIcon height={28} />}
     </button>
   )
