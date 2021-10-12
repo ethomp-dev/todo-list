@@ -52,7 +52,6 @@ const App = () => {
   }
 
   const handleUpdateItem = (item: TodoListItemT) => {
-    console.log(item)
     dispatchTodoCollection({
       type: 'UPDATE_TODO_ITEM',
       payload: {
@@ -63,39 +62,41 @@ const App = () => {
   }
 
   return (
-    <div className="grid auto-rows-min grid-cols-6 gap-12 min-h-screen text-gray-900 dark:bg-gray-900 dark:text-white p-6">
-      <header className="col-span-2">
-        <div className="grid grid-flow-row gap-12">
-          <div className="col-span-full flex justify-between">
-            <DateHeading />
-            <ThemeSwitcher />
+    <div className="min-h-screen text-gray-900 dark:bg-gray-900 dark:text-white p-6">
+      <div className="container grid auto-rows-min grid-cols-6 gap-12 mx-auto">
+        <header className="col-span-full lg:col-span-2">
+          <div className="grid grid-flow-row gap-12">
+            <div className="col-span-full flex justify-between">
+              <DateHeading />
+              <ThemeSwitcher />
+            </div>
+
+            {!todoCollection.isLoading ? (
+              <TodoListNav
+                collection={todoCollection.data}
+                onListChange={setListIndex}
+                onAddList={handleAddList}
+              />
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
+        </header>
 
-          {!todoCollection.isLoading ? (
-            <TodoListNav
-              collection={todoCollection.data}
-              onListChange={setListIndex}
-              onAddList={handleAddList}
-            />
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
-      </header>
-
-      <main className="col-span-4">
-        <div className="grid grid-flow-row gap-12">
-          {!todoCollection.isLoading && todoCollection.data.length > 0 ? (
-            <TodoList
-              list={todoCollection.data[listIndex]}
-              onRemoveList={handleRemoveList}
-              onAddItem={handleAddItem}
-              onRemoveItem={handleRemoveItem}
-              onUpdateItem={handleUpdateItem}
-            />
-          ) : null}
-        </div>
-      </main>
+        <main className="col-span-full lg:col-span-4">
+          <div className="grid grid-flow-row gap-12">
+            {!todoCollection.isLoading && todoCollection.data.length > 0 ? (
+              <TodoList
+                list={todoCollection.data[listIndex]}
+                onRemoveList={handleRemoveList}
+                onAddItem={handleAddItem}
+                onRemoveItem={handleRemoveItem}
+                onUpdateItem={handleUpdateItem}
+              />
+            ) : null}
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
