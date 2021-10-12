@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as Icon from '@heroicons/react/outline'
 import type { TodoListT } from '../index'
+import { pluralize } from '../lib/utils'
 
 const TodoListNavItem = ({
   index,
@@ -30,7 +31,7 @@ const TodoListNavItem = ({
 
         {list.items.length > 0 ? (
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {list.items.length} tasks
+            {pluralize(list.items.length, 'task')}
           </p>
         ) : null}
       </button>

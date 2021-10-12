@@ -1,3 +1,4 @@
+import { uid } from 'uid'
 import { TodoCollectionT } from '..'
 
 const todoCollectionReducer = (
@@ -11,6 +12,8 @@ const todoCollectionReducer = (
     payload: any
   }
 ) => {
+  const newData = JSON.parse(JSON.stringify(state.data))
+
   switch (action.type) {
     case 'FETCH_TODO_COLLECTION':
       return {
@@ -24,8 +27,16 @@ const todoCollectionReducer = (
         ...state,
       }
     case 'ADD_TODO_ITEM':
+      const list = newData[action.payload.listIndex]
+      list.items.push({
+        id: uid(),
+        summary: action.payload.itemSummary,
+        completed: false,
+      })
+
       return {
         ...state,
+        data: newData,
       }
     // TODO: implement REMOVE_TODO_ITEM action type
     case 'REMOVE_TODO_ITEM':

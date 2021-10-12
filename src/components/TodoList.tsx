@@ -2,8 +2,15 @@ import * as React from 'react'
 import * as Icon from '@heroicons/react/outline'
 import type { TodoListT } from '../index'
 import TodoListItem from './TodoListItem'
+import useTodoCollection from '../lib/useTodoCollection'
 
-const TodoList = ({ list }: { list: TodoListT }) => {
+const TodoList = ({
+  list,
+  onAddItem,
+}: {
+  list: TodoListT
+  onAddItem: (event: any) => void
+}) => {
   const [displayAddItem, setDisplayAddItem] = React.useState(false)
 
   // @ts-ignore
@@ -21,9 +28,11 @@ const TodoList = ({ list }: { list: TodoListT }) => {
       </h1>
 
       <ul className="space-y-6 dark:text-gray-200">
-        {list.items.map((item) => (
-          <TodoListItem key={item.id} item={item} />
-        ))}
+        {list.items.length > 0 ? (
+          list.items.map((item) => <TodoListItem key={item.id} item={item} />)
+        ) : (
+          <p>Empty</p>
+        )}
       </ul>
 
       <hr className="border-gray-200 dark:border-gray-600" />
@@ -46,7 +55,11 @@ const TodoList = ({ list }: { list: TodoListT }) => {
           onKeyDown={(event) => {
             event.key === 'Escape' && setDisplayAddItem(false)
           }}
-          // onSubmit={}
+          onSubmit={(event: any) => {
+            event.preventDefault()
+            onAddItem(event.target.summary?.value)
+            setDisplayAddItem(false)
+          }}
           className="space-x-3"
         >
           <input

@@ -9,7 +9,7 @@ export type TodoCollectionStateT = {
 }
 
 const useTodoCollection = (
-  initialState: TodoCollectionT
+  initialState?: TodoCollectionT
 ): [TodoCollectionStateT, any] => {
   const [todoCollection, dispatchTodoCollection] = React.useReducer(
     todoCollectionReducer,

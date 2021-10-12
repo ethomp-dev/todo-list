@@ -6,8 +6,18 @@ import TodoList from './components/TodoList'
 import ThemeSwitcher from './components/ThemeSwitcher'
 
 const App = () => {
-  const [todoCollection] = useTodoCollection()
+  const [todoCollection, dispatchTodoCollection] = useTodoCollection()
   const [listIndex, setListIndex] = React.useState(0)
+
+  const handleAddItem = (itemSummary) => {
+    dispatchTodoCollection({
+      type: 'ADD_TODO_ITEM',
+      payload: {
+        listIndex,
+        itemSummary,
+      },
+    })
+  }
 
   return (
     <div className="grid auto-rows-min grid-cols-6 gap-12 min-h-screen text-gray-900 dark:bg-gray-900 dark:text-white p-6">
@@ -32,7 +42,10 @@ const App = () => {
       <main className="col-span-4">
         <div className="grid grid-flow-row gap-12">
           {!todoCollection.isLoading && todoCollection.data.length > 0 ? (
-            <TodoList list={todoCollection.data[listIndex]} />
+            <TodoList
+              list={todoCollection.data[listIndex]}
+              onAddItem={handleAddItem}
+            />
           ) : null}
         </div>
       </main>
