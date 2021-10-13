@@ -24,9 +24,9 @@ const TodoListNav = ({
           />
         ))}
 
-        <li className="rounded bg-secondary text-white">
+        <li className="font-semibold">
           <button
-            className="w-full h-full p-6 text-left font-semibold"
+            className="transition-colors rounded bg-secondary hover:bg-secondary-dark focus:bg-secondary-dark w-full h-full p-6 text-left text-white"
             onClick={() => {
               const newTitle = prompt('List Title')
               if (newTitle) {

@@ -85,8 +85,9 @@ const TodoList = ({
             required
           />
           <button
-            className="rounded bg-secondary px-2 py-1 text-white"
+            className="rounded bg-secondary hover:bg-secondary-dark focus:bg-secondary-dark px-2 py-1 text-white"
             type="submit"
+            title="Add Task"
           >
             <Icon.PlusIcon height={20} className="inline align-text-bottom" />
           </button>

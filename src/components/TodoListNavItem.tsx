@@ -16,9 +16,9 @@ const TodoListNavItem = ({
   const ListIcon = Icon[list.icon] || Icon.CollectionIcon
 
   return (
-    <li className="rounded bg-gray-50 dark:bg-gray-800">
+    <li className="text-left font-semibold">
       <button
-        className="flex flex-col w-full h-full p-6 text-left font-semibold"
+        className="transition-colors flex flex-col rounded bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-850 focus:bg-gray-100 dark:focus:bg-gray-850 w-full h-full p-6"
         onClick={() => onListChange(index)}
       >
         <ListIcon
