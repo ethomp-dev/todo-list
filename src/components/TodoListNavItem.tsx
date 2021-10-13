@@ -15,6 +15,8 @@ const TodoListNavItem = ({
   // @ts-ignore
   const ListIcon = Icon[list.icon] || Icon.CollectionIcon
 
+  const incompleteItems = list.items.filter((item) => !item.completed)
+
   return (
     <li className="text-left font-semibold">
       <button
@@ -29,9 +31,9 @@ const TodoListNavItem = ({
 
         <p className="flex-1 mb-1">{list.title}</p>
 
-        {list.items.length > 0 ? (
+        {incompleteItems.length > 0 ? (
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {pluralize(list.items.length, 'task')}
+            {pluralize(incompleteItems.length, 'task')}
           </p>
         ) : null}
       </button>
