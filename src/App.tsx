@@ -63,12 +63,11 @@ const App = () => {
 
   return (
     <div className="min-h-screen text-gray-900 dark:bg-gray-900 dark:text-white p-6">
-      <div className="container grid auto-rows-min grid-cols-6 gap-12 mx-auto">
+      <div className="container grid grid-cols-6 gap-12 mx-auto">
         <header className="col-span-full lg:col-span-2">
           <div className="grid grid-flow-row gap-12">
-            <div className="col-span-full flex justify-between">
+            <div className="col-span-full flex justify-between items-center">
               <DateHeading />
-              <ThemeSwitcher />
             </div>
 
             {!todoCollection.isLoading ? (
@@ -96,6 +95,10 @@ const App = () => {
             ) : null}
           </div>
         </main>
+
+        <footer className="col-span-full">
+          <ThemeSwitcher />
+        </footer>
       </div>
     </div>
   )
