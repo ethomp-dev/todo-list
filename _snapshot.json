@@ -1,0 +1,69 @@
+[
+  {
+    "title": "Work",
+    "color": "#7f5af0",
+    "icon": "BriefcaseIcon",
+    "items": [
+      {
+        "id": "a0e1c806be2",
+        "summary": "Test.io :: define features",
+        "completed": true
+      },
+      {
+        "id": "0e1c806be22",
+        "summary": "Test.io :: define user stories",
+        "completed": false
+      },
+      {
+        "id": "e1c806be22e",
+        "summary": "Test.io :: create first test",
+        "completed": false
+      },
+      {
+        "id": "1c806be22ec",
+        "summary": "Code review PR #396",
+        "completed": true
+      },
+      {
+        "id": "c806be22ec4",
+        "summary": "Code review PR #390",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "Volunteer",
+    "color": "#ff8906",
+    "icon": "HeartIcon",
+    "items": [
+      {
+        "id": "06be22ec4ce",
+        "summary": "Create new Airtable workspace skeleton",
+        "completed": false
+      },
+      {
+        "id": "6be22ec4ceb",
+        "summary": "Write Lesson 1.7 stretch goals",
+        "completed": false
+      },
+      { "id": "be22ec4ceb2", "summary": "Write Lesson 1.8", "completed": false }
+    ]
+  },
+  {
+    "title": "Personal",
+    "color": "#2cb67d",
+    "icon": "UserIcon",
+    "items": [
+      {
+        "id": "806be22ec4c",
+        "summary": "Buy magnetic whiteboard",
+        "completed": true
+      },
+      {
+        "id": "e3a1ba1c761",
+        "summary": "Email question about name change form",
+        "completed": false
+      }
+    ]
+  }
+]

@@ -3,19 +3,28 @@ import * as Icon from '@heroicons/react/outline'
 import type { TodoListItemT, TodoListT } from '../index'
 import TodoListItem from './TodoListItem'
 
+const iconList = Object.keys(Icon)
+
+const ICON_DISPLAY_LIMIT = 16
+const initialIcons = iconList.slice(0, ICON_DISPLAY_LIMIT)
+
 const TodoList = ({
   list,
+  onUpdateList,
   onRemoveList,
   onAddItem,
   onRemoveItem,
   onUpdateItem,
 }: {
   list: TodoListT
+  onUpdateList: (list: any) => void
   onRemoveList: () => void
   onAddItem: (summary: string) => void
   onRemoveItem: (id: string) => void
   onUpdateItem: (item: TodoListItemT) => void
 }) => {
+  const [filteredIcons, setFilteredIcons] = React.useState(initialIcons)
+  const [displayChangeIcon, setDisplayChangeIcon] = React.useState(false)
   const [displayAddItem, setDisplayAddItem] = React.useState(false)
 
   // @ts-ignore
@@ -23,13 +32,53 @@ const TodoList = ({
 
   return (
     <>
-      <h1 className="flex items-center my-3 text-2xl font-semibold">
-        <ListIcon
-          className="mr-3 inline align-text-bottom"
-          color={list.color || 'text-white'}
-          height={24}
-        />
+      <h1 className="relative flex items-center my-3 text-2xl font-semibold">
+        <button
+          type="button"
+          // onClick={() => onUpdateList({ icon: 'CollectionIcon' })}
+          onClick={() => setDisplayChangeIcon(!displayChangeIcon)}
+        >
+          <ListIcon
+            className="mr-3 inline align-text-bottom"
+            color={list.color || 'text-white'}
+            height={24}
+          />
+        </button>
+
+        <div
+          className={`absolute top-full space-y-3 rounded dark:bg-gray-800 w-56 p-3 ${
+            !displayChangeIcon ? 'hidden' : ''
+          }`}
+        >
+          <input
+            className="block border border-gray-900 w-full px-2 py-1 text-base dark:text-gray-900"
+            type="text"
+            onChange={(event) => {
+              const query = event.target.value
+              if (!query) setFilteredIcons(initialIcons)
+
+              const matchingIcons = iconList.filter((icon) =>
+                icon.toLowerCase().includes(query.toLowerCase())
+              )
+
+              setFilteredIcons(matchingIcons.slice(0, ICON_DISPLAY_LIMIT))
+            }}
+          />
+          {filteredIcons.map((IconName: string) => {
+            // @ts-ignore
+            const IconEl = Icon[IconName]
+            return <IconEl className="inline mx-3" height={24} />
+          })}
+          <button className="text-base" type="reset">
+            Cancel
+          </button>
+          <button className="text-base" type="submit">
+            Save
+          </button>
+        </div>
+
         <span className="flex-1">{list.title}</span>
+
         <button className="text-base" type="button" onClick={onRemoveList}>
           Remove
         </button>
@@ -78,7 +127,7 @@ const TodoList = ({
           className="space-x-3"
         >
           <input
-            className="border border-gray-900 dark:text-gray-900 px-2 py-1"
+            className="border border-gray-900 px-2 py-1 dark:text-gray-900"
             type="text"
             name="summary"
             autoFocus

@@ -1,5 +1,5 @@
 import { uid } from 'uid'
-import type { TodoCollectionT, TodoListItemT } from '../index'
+import type { TodoCollectionT, TodoListItemT, TodoListT } from '../index'
 
 const todoCollectionReducer = (
   state: {
@@ -32,6 +32,17 @@ const todoCollectionReducer = (
             items: [],
           },
         ],
+      }
+
+    case 'UPDATE_TODO_LIST':
+      return {
+        ...state,
+        data: newData.map((list: TodoListT, index: number) => {
+          if (index === action.payload.listIndex) {
+            return { ...list, ...action.payload.list }
+          }
+          return list
+        }),
       }
 
     case 'REMOVE_TODO_LIST':

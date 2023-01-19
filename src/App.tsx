@@ -21,6 +21,16 @@ const App = () => {
     })
   }
 
+  const handleUpdateList = (list: any) => {
+    dispatchTodoCollection({
+      type: 'UPDATE_TODO_LIST',
+      payload: {
+        listIndex,
+        list,
+      },
+    })
+  }
+
   const handleRemoveList = () => {
     dispatchTodoCollection({
       type: 'REMOVE_TODO_LIST',
@@ -87,6 +97,7 @@ const App = () => {
             {!todoCollection.isLoading && todoCollection.data.length > 0 ? (
               <TodoList
                 list={todoCollection.data[listIndex]}
+                onUpdateList={handleUpdateList}
                 onRemoveList={handleRemoveList}
                 onAddItem={handleAddItem}
                 onRemoveItem={handleRemoveItem}

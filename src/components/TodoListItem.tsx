@@ -21,7 +21,11 @@ const TodoListItem = ({
             onUpdateItem({ ...item, completed: event.target.checked })
           }}
         />
-        <span className={`flex-1${item.completed ? ' line-through' : ''}`}>
+        <span
+          className={`flex-1${
+            item.completed ? ' line-through dark:text-gray-600' : ''
+          }`}
+        >
           {item.summary}
         </span>
         <button
